@@ -130,3 +130,12 @@ for(let i=0 ; i < nomsDisponibles.length ; i++){
 }
 
 document.querySelector('.disponibles').appendChild(disponiblesElement);
+
+const inputPrixMax = document.querySelector('#prix-max')
+inputPrixMax.addEventListener('input', () =>{
+    const piecesFiltrees = pieces.filter((piece) =>{
+        return piece.prix <= inputPrixMax.value;
+    });
+    document.querySelector(".fiches").innerHTML = "";
+    genererPieces(piecesFiltrees);  
+})
