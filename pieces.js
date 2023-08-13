@@ -36,10 +36,40 @@ for (let i = 0; i < pieces.length; i++) {
 
  }
 
- const boutonTrier = document.querySelector(".btn-trier");
-boutonTrier.addEventListener("click", function () {
-    pieces.sort(function (a, b) {
-        return a.prix - b.prix;
+ // Tri/prix
+const boutonTrier = document.querySelector(".btn-trier")
+boutonTrier.addEventListener("click", () => {
+    const piecesOrdonnees = Array.from(pieces)
+    piecesOrdonnees.sort((a, b) => {
+        return a.prix - b.prix
+     })
+     console.log(piecesOrdonnees)
+});
+
+//Filtres
+const boutonFiltrer = document.querySelector(".btn-filtrer")
+boutonFiltrer.addEventListener("click", () => {
+   const piecesFiltrees = pieces.filter((piece) => { return piece.prix <= 35 })
+   console.log(piecesFiltrees)
+})
+
+//Tri decroissant
+const boutonDecroissant = document.querySelector(".btn-decroissant");
+
+boutonDecroissant.addEventListener("click", () => {
+    const piecesOrdonnees = Array.from(pieces);
+    piecesOrdonnees.sort( (a, b) => {
+        return b.prix - a.prix;
+     });
+     console.log(piecesOrdonnees);
+});
+
+//Filtre par catégorie
+const boutonNoDescription = document.querySelector(".btn-nodesc");
+
+boutonNoDescription.addEventListener("click", () => {
+    const piecesFiltrees = pieces.filter( (piece) => {
+        return piece.description
     });
-    console.log(pieces);
+   console.log(piecesFiltrees)
 });
