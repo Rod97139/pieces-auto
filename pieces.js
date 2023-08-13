@@ -1,13 +1,12 @@
 // Récupération des pièces depuis le fichier JSON
-const reponse = await fetch('pieces-autos.json');
-const pieces = await reponse.json();
-// Récupération de l'élément du DOM qui accueillera les fiches
+const pieces = await fetch("pieces-autos.json").then(pieces => pieces.json());
+ 
 const sectionFiches = document.querySelector(".fiches");
-
-for (let i = 0; i < pieces.length; i++) {
-
+// Fonction qui génère toute la page web
+const genererPieces = (pieces) => {
+  for (let i = 0; i < pieces.length; i++) {
     const article = pieces[i];
-    // Création d’une balise dédiée à une pièce automobile
+    // Création d’une balise dédiée à une pièce auto
     const pieceElement = document.createElement("article");
     // Création des balises 
     const imageElement = document.createElement("img");
@@ -34,24 +33,36 @@ for (let i = 0; i < pieces.length; i++) {
     pieceElement.appendChild(descriptionElement);
     pieceElement.appendChild(stockElement);
 
- }
-
- // Tri/prix
-const boutonTrier = document.querySelector(".btn-trier")
+  }
+ 
+}
+ 
+// Premier affichage de la page
+genererPieces(pieces);
+ 
+// Ajout du listener pour trier les pièces par ordre de prix croissant
+const boutonTrier = document.querySelector(".btn-trier");
 boutonTrier.addEventListener("click", () => {
-    const piecesOrdonnees = Array.from(pieces)
-    piecesOrdonnees.sort((a, b) => {
-        return a.prix - b.prix
-     })
-     console.log(piecesOrdonnees)
+   const piecesOrdonnees = Array.from(pieces)
+   piecesOrdonnees.sort((a, b) => {
+       return a.prix - b.prix;
+   });
+  // Effacement de l'écran et regénération de la page
+  document.querySelector(".fiches").innerHTML = "";
+  genererPieces(piecesOrdonnees);
+});
+ 
+// Ajout du listener pour filtrer les pièces non abordables
+const boutonFiltrer = document.querySelector(".btn-filtrer");
+boutonFiltrer.addEventListener("click", () => {
+   const piecesFiltrees = pieces.filter((piece) => {
+       return piece.prix <= 35;
+   });
+   // Effacement de l'écran et regénération de la page avec les pièces filtrées uniquement
+  document.querySelector(".fiches").innerHTML = "";
+  genererPieces(piecesFiltrees);
 });
 
-//Filtres
-const boutonFiltrer = document.querySelector(".btn-filtrer")
-boutonFiltrer.addEventListener("click", () => {
-   const piecesFiltrees = pieces.filter((piece) => { return piece.prix <= 35 })
-   console.log(piecesFiltrees)
-})
 
 //Tri decroissant
 const boutonDecroissant = document.querySelector(".btn-decroissant");
@@ -61,7 +72,9 @@ boutonDecroissant.addEventListener("click", () => {
     piecesOrdonnees.sort( (a, b) => {
         return b.prix - a.prix;
      });
-     console.log(piecesOrdonnees);
+    // Effacement de l'écran et regénération de la page
+    document.querySelector(".fiches").innerHTML = "";
+    genererPieces(piecesOrdonnees);
 });
 
 //Filtre par catégorie
@@ -71,7 +84,9 @@ boutonNoDescription.addEventListener("click", () => {
     const piecesFiltrees = pieces.filter( (piece) => {
         return piece.description
     });
-   console.log(piecesFiltrees)
+    // Effacement de l'écran et regénération de la page avec les pièces filtrées uniquement
+    document.querySelector(".fiches").innerHTML = "";
+    genererPieces(piecesFiltrees);
 });
 
 // Tableau des noms des pièces
