@@ -1,3 +1,5 @@
+/* global Chart */
+
 export const ajoutListenersAvis = () => {
     const piecesElements = document.querySelectorAll(".fiches article button");
 
@@ -77,7 +79,7 @@ export const afficherGraphiqueAvis = async () => {
         datasets: [{
         label: "Étoiles attribuées",
         data: nb_commentaires.reverse(),
-          backgroundColor: "rgb(238, 0, 0)", // couleur jaune
+          backgroundColor: "rgb(238, 0, 0)", // Couleur de fond
         }],
     };
 
@@ -91,7 +93,7 @@ export const afficherGraphiqueAvis = async () => {
     };
 
     // Rendu du graphique dans l'élément canvas
-    const graphiqueAvis = new Chart(
+    new Chart(
       document.querySelector("#graphique-avis"),
       config,
     );
@@ -125,7 +127,7 @@ export const afficherGraphiqueAvis = async () => {
       datasets: [{
         label: "Nombre de commentaires",
         data: [nbCommentairesDispo, nbCommentairesNonDispo],
-        backgroundColor: "rgba(0, 230, 255, 1)",
+        backgroundColor: "rgb(238, 0, 0)",
       }],
     };
 
