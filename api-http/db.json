@@ -193,22 +193,16 @@
     },
     {
       "pieceId": 1,
-      "utilisateur": "boss",
-      "commentaire": "changer article",
-      "id": 22
-    },
-    {
-      "pieceId": 1,
       "utilisateur": "test",
       "commentaire": "testtest",
-      "id": 23
+      "id": 22
     },
     {
       "pieceId": 1,
       "utilisateur": "rod",
       "commentaire": "cool",
       "nbEtoiles": 5,
-      "id": 24
+      "id": 23
     }
   ]
 }

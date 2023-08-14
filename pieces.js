@@ -1,11 +1,26 @@
-import { ajoutListenersAvis, ajoutListenerEnvoyerAvis } from "./avis.js";
+import { ajoutListenersAvis, ajoutListenerEnvoyerAvis, afficherAvis } from "./avis.js";
 
 ajoutListenerEnvoyerAvis()
 // Récupération des pièces depuis le fichier JSON
-const reponse = await fetch("http://localhost:8081/pieces")
+// const reponse = await fetch("http://localhost:8081/pieces")
 
-const pieces = await reponse.json()
- 
+// const pieces = await reponse.json()
+ // Récupération des pièces éventuellement stockées dans le localStorage
+let pieces = window.localStorage.getItem("pieces");
+
+if (pieces === null) {
+  /* Code de récupération des pièces depuis l’API HTTP */
+  pieces = await fetch("http://localhost:8081/pieces").then(pieces => pieces.json());
+
+   // Transformation des pièces en JSON
+   const valeurPieces = JSON.stringify(pieces);
+   // Stockage des informations dans le localStorage
+   window.localStorage.setItem("pieces", valeurPieces);
+}else{
+    pieces = JSON.parse(pieces);
+ }
+
+
 const sectionFiches = document.querySelector(".fiches");
 // Fonction qui génère toute la page web
 const genererPieces = (pieces) => {
@@ -13,6 +28,8 @@ const genererPieces = (pieces) => {
     const article = pieces[i];
     // Création d’une balise dédiée à une pièce auto
     const pieceElement = document.createElement("article");
+    pieceElement.dataset.id = pieces[i].id
+
     // Création des balises 
     const imageElement = document.createElement("img");
     imageElement.src = article.image;
@@ -52,6 +69,21 @@ ajoutListenersAvis();
  
 // Premier affichage de la page
 genererPieces(pieces);
+
+
+
+for (let i = 0; i < pieces.length; i++) {
+    const id = pieces[i].id;
+    const avisJSON = window.localStorage.getItem(`avis-piece-${id}`);
+    const avis = JSON.parse(avisJSON);
+    console.log(avis);
+
+    if (avis !== null) {
+        const pieceElement = document.querySelector(`article[data-id="${id}"]`);
+        afficherAvis(pieceElement, avis);
+    }
+    
+}
  
 // Ajout du listener pour trier les pièces par ordre de prix croissant
 const boutonTrier = document.querySelector(".btn-trier");
@@ -152,3 +184,13 @@ inputPrixMax.addEventListener('input', () =>{
     document.querySelector(".fiches").innerHTML = "";
     genererPieces(piecesFiltrees);  
 })
+
+// Ajout du listener pour mettre à jour des données du localStorage
+const boutonMettreAJour = document.querySelector(".btn-maj");
+boutonMettreAJour.addEventListener("click", () => {
+  window.localStorage.removeItem("pieces");
+  for (let i = 0; i < pieces.length; i++) {
+    window.localStorage.removeItem("avis-piece-"+ pieces[i].id);
+  }
+  
+});
