@@ -1,4 +1,4 @@
-import { ajoutListenersAvis, ajoutListenerEnvoyerAvis, afficherAvis } from "./avis.js";
+import { ajoutListenersAvis, ajoutListenerEnvoyerAvis, afficherAvis, afficherGraphiqueAvis  } from "./avis.js";
 
 ajoutListenerEnvoyerAvis()
 // Récupération des pièces depuis le fichier JSON
@@ -194,3 +194,5 @@ boutonMettreAJour.addEventListener("click", () => {
   }
   
 });
+
+afficherGraphiqueAvis();
