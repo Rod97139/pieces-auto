@@ -4,6 +4,7 @@
   "description": "Support de Code pour le cours OpenClassrooms Creez des pages web dynamiques avec javascript",
   "main": "pieces.js",
   "scripts": {
+    "build": "tsc --target es6 -w",
     "start": "http-server",
     "dev": "http-server",
     "lint": "eslint *.js"
@@ -21,6 +22,7 @@
   "dependencies": {
     "chart.js": "^4.3.3",
     "eslint": "^8.47.0",
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "typescript": "^5.1.6"
   }
 }
