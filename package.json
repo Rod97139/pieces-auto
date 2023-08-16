@@ -2,12 +2,15 @@
   "name": "pieces-auto",
   "version": "1.0.0",
   "description": "Support de Code pour le cours OpenClassrooms Creez des pages web dynamiques avec javascript",
-  "main": "pieces.js",
+  "source": "pieces.ts",
+  "main": "dist/main.js",
   "scripts": {
-    "build": "tsc --target es6 -w",
+    "build": "parcel build",
     "start": "http-server",
+    "parcel": "parcel index.html",
     "dev": "http-server",
-    "lint": "eslint *.js"
+    "lint": "eslint *.js",
+    "ts": "tsc --target es6 -w"
   },
   "repository": {
     "type": "git",
@@ -20,9 +23,14 @@
   },
   "homepage": "https://github.com/OpenClassrooms-Student-Center/7697016-Front-End.1#readme",
   "dependencies": {
-    "chart.js": "^4.3.3",
+    "chart.js": "^4.3.3"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "2.9.3",
     "eslint": "^8.47.0",
+    "gh-pages": "^6.0.0",
     "http-server": "^14.1.1",
+    "parcel": "^2.9.3",
     "typescript": "^5.1.6"
   }
 }
