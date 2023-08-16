@@ -4,7 +4,7 @@
   "description": "Support de Code pour le cours OpenClassrooms Creez des pages web dynamiques avec javascript",
   "source": "index.html",
   "scripts": {
-    "build": "parcel build index.html --public-url ./",
+    "build": "parcel build index.html --public-url ./ && git add dist && git commit -m 'dist deploy commit' && git subtree push --prefix dist origin gh-pages",
     "start": "http-server",
     "parcel": "parcel index.html",
     "dev": "http-server",
@@ -27,7 +27,6 @@
   "devDependencies": {
     "@parcel/transformer-sass": "2.9.3",
     "eslint": "^8.47.0",
-    "gh-pages": "^6.0.0",
     "http-server": "^14.1.1",
     "parcel": "^2.9.3",
     "sass": "^1.65.1",
