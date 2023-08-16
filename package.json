@@ -2,10 +2,9 @@
   "name": "pieces-auto",
   "version": "1.0.0",
   "description": "Support de Code pour le cours OpenClassrooms Creez des pages web dynamiques avec javascript",
-  "source": "pieces.ts",
-  "main": "dist/main.js",
+  "source": "index.html",
   "scripts": {
-    "build": "parcel build",
+    "build": "parcel build index.html --public-url ./",
     "start": "http-server",
     "parcel": "parcel index.html",
     "dev": "http-server",
@@ -31,6 +30,7 @@
     "gh-pages": "^6.0.0",
     "http-server": "^14.1.1",
     "parcel": "^2.9.3",
+    "sass": "^1.65.1",
     "typescript": "^5.1.6"
   }
 }

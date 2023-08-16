@@ -13,3 +13,7 @@ Dans le cas contraire vous pouvez installer les dépendances de ce projet avec `
 Lancer api-http avec la commande `yarn start` (http://127.0.0.1:8081)
 
 Verif Eslint `yarn lint`
+
+`yarn parcel build index.html --public-url ./`
+
+`git subtree push --prefix dist origin gh-pages`
