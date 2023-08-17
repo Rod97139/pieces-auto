@@ -1,1 +1,62 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><title>Les Bonnes Pièces</title><link rel="stylesheet" href="index.c4114fc2.css"><script type="module" src="index.a79fc9db.js" defer></script><script src="index.2e60a0a1.js" defer></script></head><body> <header> <a href="index.html"><img src="logo-les-bonnes-pieces.938ec61f.png" alt="LOGO"></a> <h1>La Bonne Pièce</h1> </header> <main>  <section class="filtres"> <h3>Filtres</h3> <button class="btn-trier">Trier par prix croissant</button> <br> <button class="btn-filtrer">Filtrer les pièces non abordables</button> <br> <button class="btn-decroissant">Trier par prix décroissant</button> <br> <button class="btn-nodesc">Filtrer les pièces sans description</button> <p>Prix maximum:</p> <input type="range" name="prix-max" id="prix-max" min="0" max="60" step="5"> <h3>Ajouter un avis</h3> <form class="formulaire-avis"> Identifiant de la pièce :<br> <input type="number" name="piece-id"><br> Nom d'utilisateur :<br> <input type="text" name="utilisateur"><br> Avis :<br> <input type="text" name="commentaire"><br> Note! <br> <input type="number" name="nbEtoiles" min="0" max="5"><br> <button>Envoyer</button> </form> <h3>Aperçu des avis</h3> <canvas id="graphique-avis" width="300" height="300"></canvas> <h3>Statistiques commentaires</h3> <canvas id="graphique-dispo" width="300" height="300"></canvas> <h3>Données</h3> <button class="btn-maj">Vider le local storage</button> </section>  <section class="fiches"> <div class="abordables"> <p>Pièces abordables :</p> </div> <div class="disponibles"> <p>Pièces disponibles:</p> </div> </section> </main> </body></html>
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Les Bonnes Pièces</title>
+		<link rel="stylesheet" href="/index.b8d1660c.css">
+		<script src="/index.70c216f1.js" defer=""></script>
+		<script src="/index.8d1d23e7.js" defer=""></script>
+	</head>
+	<body>
+		<header>
+			<a href="/index.html"><img src="/logo-les-bonnes-pieces.c250b632.png" alt="LOGO"></a>
+			<h1>La Bonne Pièce</h1>
+		</header>
+		<main>
+			<!-- Menu de recherche -->
+			<section class="filtres">
+				<h3>Filtres</h3>
+				<button class="btn-trier">Trier par prix croissant</button>
+				<br>
+				<button class="btn-filtrer">Filtrer les pièces non abordables</button>
+				<br>
+				<button class="btn-decroissant">Trier par prix décroissant</button>
+				<br>
+				<button class="btn-nodesc">Filtrer les pièces sans description</button>
+				<p>Prix maximum:</p>
+				<input type="range" name="prix-max" id="prix-max" min="0" max="60" step="5">
+				<h3>Ajouter un avis</h3>
+				<form class="formulaire-avis">
+					Identifiant de la pièce :<br>
+					<input type="number" name="piece-id"><br>
+					Nom d'utilisateur :<br>
+					<input type="text" name="utilisateur"><br>
+					Avis :<br>
+					<input type="text" name="commentaire"><br>
+					Note! <br>
+					<input type="number" name="nbEtoiles" min="0" max="5"><br>
+					<button>Envoyer</button>
+				</form>
+
+				<h3>Aperçu des avis</h3>
+				<canvas id="graphique-avis" width="300" height="300"></canvas>
+				<h3>Statistiques commentaires</h3>
+				<canvas id="graphique-dispo" width="300" height="300"></canvas>
+
+				<h3>Données</h3>
+				<button class="btn-maj">Vider le local storage</button>
+
+			</section>
+
+			<!-- Fiches produits -->
+			<section class="fiches">
+				<div class="abordables">
+					<p>Pièces abordables :</p>
+				</div>
+				<div class="disponibles">
+					<p>Pièces disponibles:</p>	
+				</div>
+			</section>
+		</main>
+	</body>
+</html>

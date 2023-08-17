@@ -1,4 +1,4 @@
-import { ajoutListenersAvis, ajoutListenerEnvoyerAvis, afficherAvis, afficherGraphiqueAvis  } from "./avis.js";
+import { ajoutListenersAvis, ajoutListenerEnvoyerAvis, afficherAvis, afficherGraphiqueAvis  } from "./avis.ts";
 
 ajoutListenerEnvoyerAvis()
 // Récupération des pièces depuis le fichier JSON
@@ -6,24 +6,28 @@ ajoutListenerEnvoyerAvis()
 
 // const pieces = await reponse.json()
  // Récupération des pièces éventuellement stockées dans le localStorage
-let pieces = window.localStorage.getItem("pieces");
+let pieces: string | null = window.localStorage.getItem("pieces");
 
-if (pieces === null) {
-  /* Code de récupération des pièces depuis l’API HTTP */
-  pieces = await fetch("http://localhost:8081/pieces").then(pieces => pieces.json());
+const fetchData = async () => {
+    if (pieces === null) {
+    /* Code de récupération des pièces depuis l’API HTTP */
+    pieces = await fetch("http://localhost:8081/pieces").then(pieces => pieces.json());
 
-   // Transformation des pièces en JSON
-   const valeurPieces = JSON.stringify(pieces);
-   // Stockage des informations dans le localStorage
-   window.localStorage.setItem("pieces", valeurPieces);
-}else{
-    pieces = JSON.parse(pieces);
- }
+    // Transformation des pièces en JSON
+    const valeurPieces = JSON.stringify(pieces);
+    // Stockage des informations dans le localStorage
+    window.localStorage.setItem("pieces", valeurPieces);
+    }else{
+        pieces = JSON.parse(pieces);
+    }
+}
+
+fetchData();
 
 
-const sectionFiches = document.querySelector(".fiches");
+const sectionFiches: HTMLInputElement | null = document.querySelector(".fiches");
 // Fonction qui génère toute la page web
-const genererPieces = (pieces) => {
+const genererPieces = (pieces: any[]) => {
   for (let i = 0; i < pieces.length; i++) {
     const article = pieces[i];
     // Création d’une balise dédiée à une pièce auto
@@ -49,7 +53,7 @@ const genererPieces = (pieces) => {
      avisBouton.textContent = "Afficher les avis";
     
     // On rattache la balise article a la section Fiches
-    sectionFiches.appendChild(pieceElement);
+    sectionFiches?.appendChild(pieceElement);
     // On rattache l’image à pieceElement (la balise article)
     pieceElement.appendChild(imageElement);
     pieceElement.appendChild(nomElement);
